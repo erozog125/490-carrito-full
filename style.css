@@ -29,7 +29,7 @@ header {
 
 select {
   width: 12rem;
-  margin-top: 2rem;
+  height: 2rem;  
   box-shadow: 0 0 15px #07c41a;
   border-radius: 15px;
   background-color: #221007;
@@ -94,7 +94,92 @@ main {
   color: #ffff00;
 }
 
+.container-products {
+  width: 30rem;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+}
 
+#btn-create {
+  width: 12rem;
+  height: 2rem;
+  border-radius: 15px;
+  background-color: #28930b;
+  color: #ffff00;
+  font-size: 1rem;  
+  cursor: pointer;
+}
 
+#btn-create:hover,
+#btn-create:focus {
+  background-color: #167d70;
+  font-weight: 900;
+  color: #ffff;
+}
 
+.modal {
+  width: 20rem;
+  height: 15rem;  
+  border: groove black 2px;
+  background-color: #98a2a8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;  
+  z-index: 1;
+  display: none;
+}
 
+.modal > input {
+  width: 10rem;
+  height: 1.5rem;
+  border-radius: 15px;
+  background-color: #221007;
+  color: #ffff;
+  font-size: 1rem;  
+}
+
+/* input tipo file dentro de .modal */
+.modal input[type="file"] {
+  width: 14rem;
+  height: 2rem;
+  border-radius: 5px;  
+  color: #ffff;
+  font-size: 1rem;  
+  margin-left: 4rem;
+}
+
+.modal > button {
+  width: 12rem;
+  height: 2rem;
+  border-radius: 15px;
+  background-color: #28930b;
+  color: #ffff00;
+  font-size: 1rem;  
+  cursor: pointer;  
+}
+
+.modal > button:hover,
+.modal > button:focus {
+  background-color: #167d70;
+  font-weight: 900;
+  color: #ffff;
+}
+
+#close-modal {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: #28930b;
+  color: #ffff00;
+  font-size: 1rem;  
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

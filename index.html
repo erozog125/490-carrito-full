@@ -10,11 +10,21 @@
 </head>
 <body>
   <header><h1>Carrito de Compras</h1></header>
-  <!-- Este Select se debe renderizar por Javascript consumiendo el objeto -->
-  <select name="" id="select-products">
-    <option value="">Select one option</option>    
-  </select>
-  <main></main>
+  <div class="container-products">
+    <div class="modal">
+      <button id="close-modal">X</button>
+      <input type="text" id="new-product" placeholder="Product">
+      <input type="text" id="new-price" placeholder="Price">
+      <input type="file" name="" id="new-image">
+      <button id="btn-new-create">Create new Object</button>
+    </div>
+    <!-- Este Select se debe renderizar por Javascript consumiendo el objeto -->
+    <select name="" id="select-products">
+      <option value="">Select one option</option>     
+    </select>
+    <button id="btn-create">Create a new Product</button>
+  </div>
+  <main id="container-cards"></main>
   <script src="app.js"></script>
   <script src="products.js"></script>
 </body>
