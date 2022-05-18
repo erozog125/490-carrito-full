@@ -19,10 +19,14 @@
       <button id="btn-new-create">Create new Object</button>
     </div>
     <!-- Este Select se debe renderizar por Javascript consumiendo el objeto -->
-    <select name="" id="select-products">
-      <option value="">Select one option</option>     
-    </select>
+    <select name="" id="select-products"></select>
     <button id="btn-create">Create a new Product</button>
+    <select name="" id="filterXPrice">
+      <option value="">Select filter</option>
+      <option value="Menores a 2">Menor a 2</option>
+      <option value="Entre 2 y 4">Entre 2 y 4</option>
+      <option value="Mayores a 4">Mayores a 4</option>
+    </select>
   </div>
   <main id="container-cards"></main>
   <script src="app.js"></script>

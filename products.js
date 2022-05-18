@@ -9,4 +9,9 @@ const fruits = [
   {id:"fruit-08",product: 'strawberry',price: 3.5,image: '/Images/strawberry.jpeg'},
   {id:"fruit-09",product: 'pear',price: 4,image: '/Images/pear.jpeg'},
   {id:"fruit-10",product: 'kiwi',price: 4.5,image: '/Images/kiwi.jpeg'},
+  {id:"fruit-11",product: 'mango',price: 5,image: '/Images/mango.jpeg'},
+  {id:"fruit-12",product: 'papaya',price: 5.5,image: '/Images/papaya.jpeg'},
+  {id:"fruit-13",product: 'cherry',price: 6,image: '/Images/cherry.jpeg'},  
+  {id:"fruit-14",product: 'lemon',price: 7,image: '/Images/lemon.jpeg'},
+  {id:"fruit-15",product: 'coconut',price: 7.5,image: '/Images/coconut.jpeg'},  
 ];

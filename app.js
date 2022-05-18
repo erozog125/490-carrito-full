@@ -1,6 +1,8 @@
 const containerCards = document.getElementById('container-cards');
 const selectProducts = document.getElementById('select-products');
 const btnCreate = document.getElementById('btn-create');
+let imgSelected = " ";
+let idProduct = 0
 
 const modal = document.querySelector('.modal');
 const closeModal = document.getElementById('close-modal');
@@ -8,40 +10,56 @@ const newProduct = document.getElementById('new-product');
 const newPrice = document.getElementById('new-price');
 const newImage = document.getElementById('new-image');
 const btnNewProduct = document.getElementById('btn-new-create');
-let imgSelected = '';
+const filterXPrice = document.getElementById('filterXPrice');
     
 window.addEventListener('load', listSelect);
 selectProducts.addEventListener('change', renderCards);
 btnCreate.addEventListener('click', showModal);
 btnNewProduct.addEventListener('click', createNewProduct);
-newImage.addEventListener('change', importImg);
+newImage.addEventListener('change',importImg);
+closeModal.addEventListener('click',()=> modal.style.display = 'none');
+filterXPrice.addEventListener('change', filterPoducts);
 
-function importImg(event) {
-  const current_img =	event.target.files[0];
-	const objectURL = URL.createObjectURL(current_img)
-	imgSelected = objectURL;
-  console.log(imgSelected);
+function filterPoducts(event) {
+  const responseFilter = event.target.value === 'Menores a 2'
+  ? fruits.filter( fruit => fruit.price < 2)
+  : event.target.value === 'Entre 2 y 4'
+  ? fruits.filter( fruit => fruit.price >= 2 && fruit.price <= 4)
+  : event.target.value === 'Mayores a 4'
+  ? fruits.filter( fruit => fruit.price > 4)
+  : null;
+
+  containerCards.innerHTML = '';
+  responseFilter.map( fruit => createCards(fruit));
 }
 
-function createNewProduct() {  
 
+function importImg(event) {
+  const currentImg = event.target.files[0];
+  const objectURL = URL.createObjectURL(currentImg);
+  imgSelected = objectURL;   
+}
+
+function createNewProduct() {
+  idProduct++;
   const titleProduct = newProduct.value;
   const priceProduct = newPrice.value;
-  const newFruit = { product:titleProduct, image:imgSelected, id:1, price:priceProduct };
+  const id = idProduct;
+
+  const newFruit = {id:id,product: titleProduct,price: priceProduct,image: imgSelected};
 
   fruits.push(newFruit);
   listSelect();
-  modal.style.display = 'none';  
+  modal.style.display = 'none';
 }
 
-function showModal() {  
+function showModal() {
   modal.style.display = 'flex';  
 }
 
 function renderCards() {
   fruits.map( fruit => { fruit.product === selectProducts.value ? createCards(fruit) : null } );
 }
-
 
 function listSelect() {
   selectProducts.innerHTML = '';  

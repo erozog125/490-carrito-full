@@ -95,7 +95,7 @@ main {
 }
 
 .container-products {
-  width: 30rem;
+  width: 80%;
   height: auto;
   display: flex;
   flex-wrap: wrap;
