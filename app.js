@@ -2,7 +2,8 @@ const containerCards = document.getElementById('container-cards');
 const selectProducts = document.getElementById('select-products');
 const btnCreate = document.getElementById('btn-create');
 let imgSelected = " ";
-let idProduct = 0
+let idProduct = 0;
+const cart = [];
 
 const modal = document.querySelector('.modal');
 const closeModal = document.getElementById('close-modal');
@@ -11,6 +12,7 @@ const newPrice = document.getElementById('new-price');
 const newImage = document.getElementById('new-image');
 const btnNewProduct = document.getElementById('btn-new-create');
 const filterXPrice = document.getElementById('filterXPrice');
+const tableCart = document.getElementById('table-cart');
     
 window.addEventListener('load', listSelect);
 selectProducts.addEventListener('change', renderCards);
@@ -32,7 +34,6 @@ function filterPoducts(event) {
   containerCards.innerHTML = '';
   responseFilter.map( fruit => createCards(fruit));
 }
-
 
 function importImg(event) {
   const currentImg = event.target.files[0];
@@ -97,6 +98,7 @@ function createCards(fruit) {
   btnAdd.setAttribute('id',id);
   btnAdd.classList.add('btn-add');
   btnAdd.textContent = "Add to Cart";
+  btnAdd.addEventListener('click', addToCart);
 
   card.appendChild(imgCard);
   card.appendChild(nameCard);
@@ -106,3 +108,78 @@ function createCards(fruit) {
   containerCards.appendChild(card);
 }
 
+function addToCart(event) {
+
+  // 1. identificar  el producto
+  const idCurrentProduct = event.target.id;
+
+  // 2. Trae el producto
+  const productSelected = fruits.find( fruit => fruit.id === idCurrentProduct);
+  console.log(productSelected);    
+
+  // 3. Agregar al carrito
+    if(cart.length === 0) {
+      cart.push(productSelected);      
+    }
+    else {
+      const isExist = cart.find( product => product.id === productSelected.id );
+      if(isExist === undefined) {
+        cart.push(productToCart);
+      } else {
+        isExist.quantity++;
+      }
+    }
+    cart.map( element => {
+      renderCart(element);
+    })    
+}
+
+
+
+function renderCart(product) {
+
+  const tBody = document.getElementById('tBody');  
+
+  tBody. innerHTML = `
+    <tr class="tr-products">
+      <td>${product.product}</td>
+      <td>${product.price}</td>
+      <td><button class="addQuantity" id="addQuantity">-</button></td>
+      <td>${product.quantity}</td>
+      <td><button class="decQuantity" id="decQuantity">+</button></td>        
+      <td>${(product.quantity * product.price).toFixed(2)}</td>
+    </tr>            
+  `
+  // const containerCart = document.createElement('tr');
+
+  // tBody.setAttribute('id','tBody');  
+  // containerCart.classList.add('tr-products');
+
+
+  // const productCart = document.createElement('td');
+  // const priceCart = document.createElement('td');
+  // const btnDec = document.createElement('button');
+  // const btnAdd = document.createElement('button');
+  // const quantityCart = document.createElement('td');
+  // const subtotalCart = document.createElement('td');   
+
+  // btnDec.classList.add('decQuantity');
+  // btnAdd.classList.add('addQuantity');
+  
+  // productCart.textContent = product.product;
+  // priceCart.textContent = product.price;
+  // quantityCart.textContent = product.quantity;
+  // subtotalCart.textContent = product.quantity * product.price;
+  // btnDec.textContent = '-';
+  // btnAdd.textContent = '+';
+  
+  // containerCart.appendChild(productCart);
+  // containerCart.appendChild(priceCart);
+  // containerCards.appendChild(btnDec);
+  // containerCart.appendChild(quantityCart);
+  // containerCart.appendChild(btnAdd);
+  // containerCart.appendChild(subtotalCart);
+
+  // tBody.appendChild(containerCart);
+  // tableCart.appendChild(tBody);
+}
